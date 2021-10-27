@@ -17,16 +17,17 @@ import java.util.UUID;
 public class CategoryModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue
+    @Column(columnDefinition = "uuid", updatable = false)
+    private UUID id;
     @Basic(optional = false)
     @Column(name = "\"name\"")
     private String name;
     @Basic(optional = false)
     @Column(name = "\"description\"")
     private String description;
-    @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false)
-    private UUID id;
+
 
     @Override
     public int hashCode() {

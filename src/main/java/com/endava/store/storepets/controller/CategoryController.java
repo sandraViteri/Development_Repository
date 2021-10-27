@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -34,9 +32,8 @@ public class CategoryController {
 
     @CrossOrigin
     @GetMapping(path = {"/categories/{id}"})
-    public ResponseEntity<List<CategoryDto>> getCategory(@PathVariable(required = false, name = "id") UUID id) {
+    public ResponseEntity<CategoryDto> getCategory(@PathVariable(required = false, name = "id") UUID id) {
         try {
-            System.out.println("id =" + id);
             return new ResponseEntity<>(categoryService.getCategory(id), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,13 +71,13 @@ public class CategoryController {
 
     @CrossOrigin
     @DeleteMapping(path = "/categories")
-    public ResponseEntity deleteCategory(@RequestParam(required = false, name = "id") UUID id) {
+    public ResponseEntity<String> deleteCategory(@RequestParam(required = false, name = "id") UUID id) {
         try {
             categoryService.deleteCategory(id);
-            return new ResponseEntity<>(null, HttpStatus.OK);
+           return new ResponseEntity<>(id + " Was deleted", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+          return new ResponseEntity<>(id+" Was not deleted", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
