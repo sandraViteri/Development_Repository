@@ -1,48 +1,20 @@
 package com.endava.store.storepets.model;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.UUID;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(schema = "public", name = "\"categories\"")
+public class CategoryModel extends GenericModel {
 
-public class CategoryModel implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false)
-    private UUID id;
-    @Basic(optional = false)
-    @Column(name = "\"name\"")
-    private String name;
-    @Basic(optional = false)
-    @Column(name = "\"description\"")
-    private String description;
-
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof CategoryModel)) {
-            return false;
-        }
-        CategoryModel other = (CategoryModel) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+    @Builder
+    public CategoryModel(UUID id, String name, String description) {
+        super(id, name, description);
+        System.out.println(getId()+getDescription()+getName());
     }
 
     @Override

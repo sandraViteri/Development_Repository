@@ -13,7 +13,8 @@ public final class CategoryUtilities {
     }
 
     public static CategoryModel convertDtoToCategoryModel(CategoryDto dto){
-        return new CategoryModel(dto.getId(), dto.getName(),
-                dto.getDescription());
+          return new CategoryModel(dto.getId(), dto.getName(),
+                  dto.getDescription());
+
     }
 }

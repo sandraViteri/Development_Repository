@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -45,28 +46,27 @@ public class CategoryController {
     @PostMapping(path = "/categories",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CategoryDto> saveCategory(@RequestBody CategoryDto dto) {
+    public ResponseEntity<List<CategoryDto>> saveCategory(@RequestBody List<CategoryDto> listDto) {
         try {
-            dto = categoryService.saveCategory(dto);
-            return new ResponseEntity<>(dto, HttpStatus.OK);
+            return new ResponseEntity<>(categoryService.saveCategories(listDto), HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
         }
     }
 
     @CrossOrigin
     @PutMapping(path = "/categories",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto dto) {
         try {
-            dto = categoryService.saveCategory(dto);
-            return new ResponseEntity<>(dto, HttpStatus.OK);
+            if (categoryService.getCategory(dto.getId()) != null) {
+                return new ResponseEntity<>(categoryService.saveCategory(dto), HttpStatus.OK);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.NOT_MODIFIED);
         }
+        return null;
     }
 
     @CrossOrigin
@@ -74,10 +74,9 @@ public class CategoryController {
     public ResponseEntity<String> deleteCategory(@RequestParam(required = false, name = "id") UUID id) {
         try {
             categoryService.deleteCategory(id);
-           return new ResponseEntity<>(id + " Was deleted", HttpStatus.OK);
+            return new ResponseEntity<>(id + " Was deleted", HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-          return new ResponseEntity<>(id+" Was not deleted", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(id + " Was not deleted", HttpStatus.NOT_FOUND);
         }
     }
 }
