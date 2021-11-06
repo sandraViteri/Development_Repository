@@ -15,25 +15,19 @@ public class CategoryUtilitiesTest {
 
     @Test
     public void testConvertModelToCategoryDto() {
-        UtilityCategoryData obj = new UtilityCategoryData();
-
-        CategoryDto dto = CategoryUtilities.convertModelToCategoryDto(obj.getCategoriesModel().get(1));
-
-        Assert.assertEquals("Not valid Description ", obj.getCategoriesModel().get(1).getDescription()
-                , dto.getDescription());
-        Assert.assertEquals("Not valid Id ", obj.getCategoriesModel().get(1).getId(), dto.getId());
-        Assert.assertEquals("Not valid Name ", obj.getCategoriesModel().get(1).getName(), dto.getName());
+        CategoryModel model = UtilityCategoryData.getCategoriesModel().get(1);
+        CategoryDto dto=CategoryUtilities.convertModelToCategoryDto(model);
+        Assert.assertEquals("Not valid Description ", model.getDescription(), dto.getDescription());
+        Assert.assertEquals("Not valid Id ", model.getId(), dto.getId());
+        Assert.assertEquals("Not valid Name ", model.getName(), dto.getName());
     }
 
     @Test
     public void testConvertDtoToCategoryModel() {
-        UtilityCategoryData dto = new UtilityCategoryData();
-
-        CategoryModel obj = CategoryUtilities.convertDtoToCategoryModel(dto.getCategoriesDto().get(1));
-
-        Assert.assertEquals("Not valid Description ", dto.getCategoriesDto().get(1).getDescription()
-                , obj.getDescription());
-        Assert.assertEquals("Not valid Id ", dto.getCategoriesDto().get(1).getId(), obj.getId());
-        Assert.assertEquals("Not valid Name ", dto.getCategoriesDto().get(1).getName(), obj.getName());
+        CategoryDto dto = UtilityCategoryData.getCategoriesDto().get(1);
+        CategoryModel model = CategoryUtilities.convertDtoToCategoryModel(dto);
+        Assert.assertEquals("Not valid Description ", dto.getDescription(), model.getDescription());
+        Assert.assertEquals("Not valid Id ", dto.getId(), model.getId());
+        Assert.assertEquals("Not valid Name ", dto.getName(), model.getName());
     }
 }

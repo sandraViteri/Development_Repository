@@ -14,7 +14,6 @@ public class CategoryModel extends GenericModel {
     @Builder
     public CategoryModel(UUID id, String name, String description) {
         super(id, name, description);
-        System.out.println(getId()+getDescription()+getName());
     }
 
     @Override

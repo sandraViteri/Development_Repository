@@ -2,7 +2,7 @@ package com.endava.store.storepets.controller;
 
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.service.CategoryService;
-import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,11 +14,11 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
-@AllArgsConstructor
+
 public class CategoryController {
 
     @Autowired
-    private final CategoryService categoryService;
+    private CategoryService categoryService;
 
     @CrossOrigin
     @GetMapping("/categories")
@@ -26,7 +26,6 @@ public class CategoryController {
         try {
             return new ResponseEntity<>(categoryService.getCategories(), HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -37,7 +36,6 @@ public class CategoryController {
         try {
             return new ResponseEntity<>(categoryService.getCategory(id), HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -50,23 +48,20 @@ public class CategoryController {
         try {
             return new ResponseEntity<>(categoryService.saveCategories(listDto), HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
         }
     }
 
     @CrossOrigin
     @PutMapping(path = "/categories",
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto dto) {
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> updateCategory(@RequestBody CategoryDto dto) {
         try {
-            if (categoryService.getCategory(dto.getId()) != null) {
-                return new ResponseEntity<>(categoryService.saveCategory(dto), HttpStatus.OK);
-            }
+           return new ResponseEntity<>(categoryService.updateCategory(dto), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
-        return null;
     }
 
     @CrossOrigin
