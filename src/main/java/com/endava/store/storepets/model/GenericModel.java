@@ -25,21 +25,4 @@ public class GenericModel implements Serializable {
     @Basic(optional = false)
     @Column(name = "\"description\"")
     public String description;
-
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof CategoryModel)) {
-            return false;
-        }
-        CategoryModel other = (CategoryModel) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
-    }
 }

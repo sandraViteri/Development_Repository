@@ -11,20 +11,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(schema = "public", name = "\"categories\"")
-public class CategoryModel extends GenericModel {
+@Table(schema = "public", name = "\"payment_modes\"")
+public class PaymentModeModel extends GenericModel {
 
     @Builder
-    public CategoryModel(UUID id, String name, String description) {
+    public PaymentModeModel(UUID id, String name, String description) {
         super(id, name, description);
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof CategoryModel)) {
+        if (!(object instanceof PaymentModeModel)) {
             return false;
         }
-        CategoryModel other = (CategoryModel) object;
+        PaymentModeModel other = (PaymentModeModel) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
@@ -37,7 +37,7 @@ public class CategoryModel extends GenericModel {
 
     @Override
     public String toString() {
-        return "com.endava.store.storepets.model.CategoryModel[id=" + id + "]";
+        return "com.endava.store.storepets.model.PaymentModeModel[id=" + id + "]";
     }
 
 }

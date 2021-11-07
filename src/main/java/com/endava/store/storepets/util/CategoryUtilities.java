@@ -27,5 +27,4 @@ public final class CategoryUtilities {
     public static List<CategoryModel> convertListDtoToListModel(List<CategoryDto> listDto) {
         return listDto.stream().map(CategoryUtilities::convertDtoToCategoryModel).collect(Collectors.toList());
     }
-
 }

@@ -1,10 +1,10 @@
 package com.endava.store.storepets.service;
 
-import com.endava.store.storepets.dto.CategoryDto;
-import com.endava.store.storepets.model.CategoryModel;
-import com.endava.store.storepets.repository.CategoryRepository;
-import com.endava.store.storepets.testUtilities.UtilityCategoryData;
-import com.endava.store.storepets.util.CategoryUtilities;
+import com.endava.store.storepets.dto.PaymentModeDto;
+import com.endava.store.storepets.model.PaymentModeModel;
+import com.endava.store.storepets.repository.PaymentModeRepository;
+import com.endava.store.storepets.testUtilities.UtilityPaymentModeData;
+import com.endava.store.storepets.util.PaymentModeUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,25 +25,25 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
-public class CategoryServiceTest {
+public class PaymentModeServiceTest {
 
     @InjectMocks
-    private CategoryService categoryService;
+    private PaymentModeService userTypeService;
     @Mock
-    private CategoryRepository categoryRepository;
+    private PaymentModeRepository userTypeRepository;
 
-    List<CategoryModel> listModel;
+    List<PaymentModeModel> listModel;
 
     @Before
     public void setUp(){
-        listModel = UtilityCategoryData.getCategoriesModel();
+        listModel = UtilityPaymentModeData.getPaymentModesModel();
     }
 
     @Test
-    public void testDtoEqualToModelWhenGetCategoryById() {
-        Mockito.when(categoryRepository.getById(listModel.get(1).getId())).thenReturn(listModel.get(1));
+    public void testDtoEqualToModelWhenGetPaymentModeById() {
+        Mockito.when(userTypeRepository.getById(listModel.get(1).getId())).thenReturn(listModel.get(1));
 
-        CategoryDto dto = categoryService.getCategory(listModel.get(1).getId());
+        PaymentModeDto dto = userTypeService.getPaymentMode(listModel.get(1).getId());
 
         Assert.assertEquals("Not valid Id ", listModel.get(1).getId(), dto.getId());
         Assert.assertEquals("Not valid Name ", listModel.get(1).getName(), dto.getName());
@@ -52,9 +52,9 @@ public class CategoryServiceTest {
 
     @Test
     public void testDtoListEqualToModelListWhenGetAllCategories() {
-        Mockito.when(categoryRepository.findAll()).thenReturn(listModel);
+        Mockito.when(userTypeRepository.findAll()).thenReturn(listModel);
 
-        List<CategoryDto> listDtoResult = categoryService.getCategories();
+        List<PaymentModeDto> listDtoResult = userTypeService.getPaymentModes();
 
         Assert.assertEquals("The data size does not match with expected data size", listModel.size()
                 , listDtoResult.size());
@@ -67,11 +67,11 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testDtoListEqualToModelListWhenUpdateCategory() throws NotFoundException {
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(true);
-        Mockito.when(categoryRepository.save(listModel.get(1))).thenReturn(listModel.get(1));
+    public void testDtoListEqualToModelListWhenUpdatePaymentMode() throws NotFoundException {
+        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        Mockito.when(userTypeRepository.save(listModel.get(1))).thenReturn(listModel.get(1));
 
-        CategoryDto dto = categoryService.updateCategory(new CategoryDto(listModel.get(1).getId(),
+        PaymentModeDto dto = userTypeService.updatePaymentMode(new PaymentModeDto(listModel.get(1).getId(),
                 listModel.get(1).getName(), listModel.get(1).getDescription()));
 
         Assert.assertEquals("Not valid Id ", listModel.get(1).getId(), dto.getId());
@@ -82,19 +82,19 @@ public class CategoryServiceTest {
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
     @Test
-    public void testWhenCategoryDoesNotExistExceptionIsThrown() throws NotFoundException {
+    public void testWhenPaymentModeDoesNotExistExceptionIsThrown() throws NotFoundException {
         exceptionRule.expect(NotFoundException.class);
-        exceptionRule.expectMessage("The Category was not found!");
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(false);
-        categoryService.existCategory(listModel.get(1).getId());
+        exceptionRule.expectMessage("The PaymentMode was not found!");
+        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
+        userTypeService.existPaymentMode(listModel.get(1).getId());
     }
 
     @Test
     public void testModelAndDtoFunctionalityUsingSaveCategories() {
-        Mockito.when(categoryRepository.saveAll(listModel)).thenReturn(listModel);
+        Mockito.when(userTypeRepository.saveAll(listModel)).thenReturn(listModel);
 
-        List<CategoryDto> listDto = categoryService.saveCategories(
-                CategoryUtilities.convertListModelToListDto(listModel));
+        List<PaymentModeDto> listDto = userTypeService.savePaymentModes(
+                PaymentModeUtilities.convertListModelToListDto(listModel));
 
         Assert.assertEquals("The data size does not match with expected data size",
                 listModel.size(), listDto.size());
@@ -107,19 +107,19 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testWhenDeleteCategoryExceptionIsThrown() throws NotFoundException {
+    public void testWhenDeletePaymentModeExceptionIsThrown() throws NotFoundException {
         exceptionRule.expect(NotFoundException.class);
-        exceptionRule.expectMessage("The Category was not found!");
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(false);
-        categoryService.deleteCategory(listModel.get(1).getId());
+        exceptionRule.expectMessage("The PaymentMode was not found!");
+        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
+        userTypeService.deletePaymentMode(listModel.get(1).getId());
     }
 
     @Test
-    public void testDeleteCategory() throws NotFoundException {
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(true);
-        categoryService.deleteCategory(listModel.get(1).getId());
+    public void testDeletePaymentMode() throws NotFoundException {
+        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        userTypeService.deletePaymentMode(listModel.get(1).getId());
 
-        verify(categoryRepository, times(1)).deleteById(listModel.get(1).getId());
+        verify(userTypeRepository, times(1)).deleteById(listModel.get(1).getId());
 
     }
 }
