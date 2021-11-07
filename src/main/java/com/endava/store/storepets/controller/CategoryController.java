@@ -33,7 +33,7 @@ public class CategoryController {
     @CrossOrigin("http://localhost")
     @GetMapping(path = "/categories/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getCategory(@PathVariable(required = false, name = "id") UUID id) {
+    public ResponseEntity<Object> getCategory(@PathVariable(name = "id") UUID id) {
         try {
             return new ResponseEntity<>(categoryService.getCategory(id), HttpStatus.OK);
         } catch (Exception e) {
@@ -67,12 +67,12 @@ public class CategoryController {
 
     @CrossOrigin("http://localhost")
     @DeleteMapping(path = "/categories")
-    public ResponseEntity<Object> deleteCategory(@RequestParam(required = false, name = "id") UUID id) {
+    public ResponseEntity<Object> deleteCategory(@RequestParam(name = "id") UUID id) {
         try {
             categoryService.deleteCategory(id);
             return new ResponseEntity<>(id + " Was deleted", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(id + " Was not deleted", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }

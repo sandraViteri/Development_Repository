@@ -39,7 +39,7 @@ public class CategoryService {
         }
     }
 
-    public CategoryDto updateCategory(@org.jetbrains.annotations.NotNull CategoryDto dto) throws NotFoundException {
+    public CategoryDto updateCategory(CategoryDto dto) throws NotFoundException {
         existCategory(dto.getId());
         CategoryModel model = CategoryUtilities.convertDtoToCategoryModel(dto);
         return CategoryUtilities.convertModelToCategoryDto(categoryRepository.save(model));
