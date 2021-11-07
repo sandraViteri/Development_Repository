@@ -4,8 +4,10 @@ import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;
 import com.endava.store.storepets.repository.CategoryRepository;
 import com.endava.store.storepets.util.CategoryUtilities;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -31,19 +33,19 @@ public class CategoryService {
         return CategoryUtilities.convertListModelToListDto(listModel);
     }
 
-    public void existCategory(UUID id) throws Exception {
+    public void existCategory(UUID id) throws NotFoundException{
         if (!categoryRepository.existsById(id)) {
-            throw new Exception("The Category was not found!");
+            throw new NotFoundException("The Category was not found!");
         }
     }
 
-    public CategoryDto updateCategory(CategoryDto dto) throws Exception {
+    public CategoryDto updateCategory(@org.jetbrains.annotations.NotNull CategoryDto dto) throws NotFoundException {
         existCategory(dto.getId());
         CategoryModel model = CategoryUtilities.convertDtoToCategoryModel(dto);
         return CategoryUtilities.convertModelToCategoryDto(categoryRepository.save(model));
     }
 
-    public void deleteCategory(UUID id) throws Exception {
+    public void deleteCategory(UUID id) throws NotFoundException {
         existCategory(id);
         categoryRepository.deleteById(id);
     }

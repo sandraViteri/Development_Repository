@@ -5,6 +5,7 @@ import com.endava.store.storepets.model.CategoryModel;
 import com.endava.store.storepets.repository.CategoryRepository;
 import com.endava.store.storepets.testUtilities.UtilityCategoryData;
 import com.endava.store.storepets.util.CategoryUtilities;
+import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,6 +19,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
@@ -63,7 +67,7 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testDtoListEqualToModelListWhenUpdateCategory() throws Exception {
+    public void testDtoListEqualToModelListWhenUpdateCategory() throws NotFoundException {
         Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(true);
         Mockito.when(categoryRepository.save(listModel.get(1))).thenReturn(listModel.get(1));
 
@@ -78,8 +82,8 @@ public class CategoryServiceTest {
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
     @Test
-    public void testWhenCategoryDoesNotExistExceptionIsThrown() throws Exception {
-        exceptionRule.expect(Exception.class);
+    public void testWhenCategoryDoesNotExistExceptionIsThrown() throws NotFoundException {
+        exceptionRule.expect(NotFoundException.class);
         exceptionRule.expectMessage("The Category was not found!");
         Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(false);
         categoryService.existCategory(listModel.get(1).getId());
@@ -103,10 +107,19 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testWhenDeleteCategoryExceptionIsThrown() throws Exception {
-        exceptionRule.expect(Exception.class);
+    public void testWhenDeleteCategoryExceptionIsThrown() throws NotFoundException {
+        exceptionRule.expect(NotFoundException.class);
         exceptionRule.expectMessage("The Category was not found!");
         Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(false);
         categoryService.deleteCategory(listModel.get(1).getId());
+    }
+
+    @Test
+    public void test1() throws NotFoundException {
+        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        categoryService.deleteCategory(listModel.get(1).getId());
+
+        verify(categoryRepository, times(1)).deleteById(listModel.get(1).getId());
+
     }
 }

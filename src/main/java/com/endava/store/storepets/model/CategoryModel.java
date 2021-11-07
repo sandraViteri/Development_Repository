@@ -1,7 +1,12 @@
 package com.endava.store.storepets.model;
-import lombok.*;
 
-import javax.persistence.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -17,7 +22,8 @@ public class CategoryModel extends GenericModel {
     }
 
     @Override
-    public String toString() { return "com.endava.store.storepets.model.CategoryModel[id=" + id + "]";
+    public String toString() {
+        return "com.endava.store.storepets.model.CategoryModel[id=" + id + "]";
     }
 
 }

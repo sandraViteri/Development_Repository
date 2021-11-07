@@ -2,7 +2,6 @@ package com.endava.store.storepets.controller;
 
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.service.CategoryService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,39 +19,41 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @CrossOrigin
-    @GetMapping("/categories")
-    public ResponseEntity<List<CategoryDto>> getCategories() {
+    @CrossOrigin("http://localhost")
+    @GetMapping(path = "/categories",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getCategories() {
         try {
             return new ResponseEntity<>(categoryService.getCategories(), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
-    @CrossOrigin
-    @GetMapping(path = {"/categories/{id}"})
-    public ResponseEntity<CategoryDto> getCategory(@PathVariable(required = false, name = "id") UUID id) {
+    @CrossOrigin("http://localhost")
+    @GetMapping(path = "/categories/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getCategory(@PathVariable(required = false, name = "id") UUID id) {
         try {
             return new ResponseEntity<>(categoryService.getCategory(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
-    @CrossOrigin
+    @CrossOrigin("http://localhost")
     @PostMapping(path = "/categories",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<CategoryDto>> saveCategory(@RequestBody List<CategoryDto> listDto) {
+    public ResponseEntity<Object> saveCategories(@RequestBody List<CategoryDto> listDto) {
         try {
             return new ResponseEntity<>(categoryService.saveCategories(listDto), HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_IMPLEMENTED);
         }
     }
 
-    @CrossOrigin
+    @CrossOrigin("http://localhost")
     @PutMapping(path = "/categories",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -64,9 +65,9 @@ public class CategoryController {
         }
     }
 
-    @CrossOrigin
+    @CrossOrigin("http://localhost")
     @DeleteMapping(path = "/categories")
-    public ResponseEntity<String> deleteCategory(@RequestParam(required = false, name = "id") UUID id) {
+    public ResponseEntity<Object> deleteCategory(@RequestParam(required = false, name = "id") UUID id) {
         try {
             categoryService.deleteCategory(id);
             return new ResponseEntity<>(id + " Was deleted", HttpStatus.OK);
