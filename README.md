@@ -10,16 +10,6 @@ Store Pets is a study backend project using the following configuration
 - SonarQube in local Environment
 - Junit 4
 
-### Executing without tests
-clean -DskipTests install -U spring-boot:run
-Store  project has the following configuration
-- Java 11
-- Spring Boot 2.5.5
-- Postgres Database in Docker local and SupaBase in https://supabase.io/
-- Maven 3.6.3
-- SonarQube in local Environment
-- Junit 4
-
 ### Execute without tests
 To execute project using Local database:
 
@@ -29,11 +19,6 @@ To execute project using Supa database:
 
 `$ mvn clean -DskipTests install -U spring-boot:run -P supa`
 
-### Execute without tests
-To execute project with unit tests:
-
-`$ mvn clean -DskipTests install -U spring-boot:run -P docker`
-`
 
 ### Sonar with Coverage report
 To execute SonarQube with coverage report:
