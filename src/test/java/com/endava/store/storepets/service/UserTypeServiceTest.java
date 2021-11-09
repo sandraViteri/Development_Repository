@@ -51,7 +51,7 @@ public class UserTypeServiceTest {
     }
 
     @Test
-    public void testDtoListEqualToModelListWhenGetAllCategories() {
+    public void testDtoListEqualToModelListWhenGetAllUserTypes() {
         Mockito.when(userTypeRepository.findAll()).thenReturn(listModel);
 
         List<UserTypeDto> listDtoResult = userTypeService.getUserTypes();
@@ -90,7 +90,7 @@ public class UserTypeServiceTest {
     }
 
     @Test
-    public void testModelAndDtoFunctionalityUsingSaveCategories() {
+    public void testModelAndDtoFunctionalityUsingSaveUserTypes() {
         Mockito.when(userTypeRepository.saveAll(listModel)).thenReturn(listModel);
 
         List<UserTypeDto> listDto = userTypeService.saveUserTypes(
