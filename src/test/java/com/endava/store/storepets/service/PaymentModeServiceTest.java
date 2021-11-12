@@ -3,8 +3,8 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;
 import com.endava.store.storepets.repository.PaymentModeRepository;
-import com.endava.store.storepets.testUtilities.UtilityPaymentModeData;
-import com.endava.store.storepets.util.PaymentModeUtilities;
+import com.endava.store.storepets.testData.PaymentModeData;
+import com.endava.store.storepets.TestUtilities.PaymentModeUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,22 +28,22 @@ import static org.mockito.Mockito.verify;
 public class PaymentModeServiceTest {
 
     @InjectMocks
-    private PaymentModeService PaymentModeService;
+    private PaymentModeService paymentModeService;
     @Mock
-    private PaymentModeRepository PaymentModeRepository;
+    private PaymentModeRepository paymentModeRepository;
 
     List<PaymentModeModel> listModel;
 
     @Before
     public void setUp(){
-        listModel = UtilityPaymentModeData.getPaymentModesModel();
+        listModel = PaymentModeData.getPaymentModesModel();
     }
 
     @Test
     public void testDtoEqualToModelWhenGetPaymentModeById() {
-        Mockito.when(PaymentModeRepository.getById(listModel.get(1).getId())).thenReturn(listModel.get(1));
+        Mockito.when(paymentModeRepository.getById(listModel.get(1).getId())).thenReturn(listModel.get(1));
 
-        PaymentModeDto dto = PaymentModeService.getPaymentMode(listModel.get(1).getId());
+        PaymentModeDto dto = paymentModeService.getPaymentMode(listModel.get(1).getId());
 
         Assert.assertEquals("Not valid Id ", listModel.get(1).getId(), dto.getId());
         Assert.assertEquals("Not valid Name ", listModel.get(1).getName(), dto.getName());
@@ -52,9 +52,9 @@ public class PaymentModeServiceTest {
 
     @Test
     public void testDtoListEqualToModelListWhenGetAllPaymentModes() {
-        Mockito.when(PaymentModeRepository.findAll()).thenReturn(listModel);
+        Mockito.when(paymentModeRepository.findAll()).thenReturn(listModel);
 
-        List<PaymentModeDto> listDtoResult = PaymentModeService.getPaymentModes();
+        List<PaymentModeDto> listDtoResult = paymentModeService.getPaymentModes();
 
         Assert.assertEquals("The data size does not match with expected data size", listModel.size()
                 , listDtoResult.size());
@@ -68,10 +68,10 @@ public class PaymentModeServiceTest {
 
     @Test
     public void testDtoListEqualToModelListWhenUpdatePaymentMode() throws NotFoundException {
-        Mockito.when(PaymentModeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
-        Mockito.when(PaymentModeRepository.save(listModel.get(1))).thenReturn(listModel.get(1));
+        Mockito.when(paymentModeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        Mockito.when(paymentModeRepository.save(listModel.get(1))).thenReturn(listModel.get(1));
 
-        PaymentModeDto dto = PaymentModeService.updatePaymentMode(new PaymentModeDto(listModel.get(1).getId(),
+        PaymentModeDto dto = paymentModeService.updatePaymentMode(new PaymentModeDto(listModel.get(1).getId(),
                 listModel.get(1).getName(), listModel.get(1).getDescription()));
 
         Assert.assertEquals("Not valid Id ", listModel.get(1).getId(), dto.getId());
@@ -81,19 +81,11 @@ public class PaymentModeServiceTest {
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
-    @Test
-    public void testWhenPaymentModeDoesNotExistExceptionIsThrown() throws NotFoundException {
-        exceptionRule.expect(NotFoundException.class);
-        exceptionRule.expectMessage("The PaymentMode was not found!");
-        Mockito.when(PaymentModeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
-        PaymentModeService.existPaymentMode(listModel.get(1).getId());
-    }
-
-    @Test
+     @Test
     public void testModelAndDtoFunctionalityUsingSavePaymentModes() {
-        Mockito.when(PaymentModeRepository.saveAll(listModel)).thenReturn(listModel);
+        Mockito.when(paymentModeRepository.saveAll(listModel)).thenReturn(listModel);
 
-        List<PaymentModeDto> listDto = PaymentModeService.savePaymentModes(
+        List<PaymentModeDto> listDto = paymentModeService.savePaymentModes(
                 PaymentModeUtilities.convertListModelToListDto(listModel));
 
         Assert.assertEquals("The data size does not match with expected data size",
@@ -109,16 +101,16 @@ public class PaymentModeServiceTest {
     @Test
     public void testWhenDeletePaymentModeExceptionIsThrown() throws NotFoundException {
         exceptionRule.expect(NotFoundException.class);
-        exceptionRule.expectMessage("The PaymentMode was not found!");
-        Mockito.when(PaymentModeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
-        PaymentModeService.deletePaymentMode(listModel.get(1).getId());
+        exceptionRule.expectMessage("The Payment Mode was not found!");
+        Mockito.when(paymentModeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
+        paymentModeService.deletePaymentMode(listModel.get(1).getId());
     }
 
     @Test
     public void testDeletePaymentMode() throws NotFoundException {
-        Mockito.when(PaymentModeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
-        PaymentModeService.deletePaymentMode(listModel.get(1).getId());
+        Mockito.when(paymentModeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        paymentModeService.deletePaymentMode(listModel.get(1).getId());
 
-        verify(PaymentModeRepository, times(1)).deleteById(listModel.get(1).getId());
+        verify(paymentModeRepository, times(1)).deleteById(listModel.get(1).getId());
     }
 }

@@ -1,4 +1,4 @@
-package com.endava.store.storepets.util;
+package com.endava.store.storepets.TestUtilities;
 
 import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;

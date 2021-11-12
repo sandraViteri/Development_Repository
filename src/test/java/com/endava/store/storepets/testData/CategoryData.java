@@ -1,4 +1,4 @@
-package com.endava.store.storepets.testUtilities;
+package com.endava.store.storepets.testData;
 
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class UtilityCategoryData {
+public final class CategoryData {
 
     public static List<CategoryModel> getCategoriesModel() {
         List<CategoryModel> listModel = new ArrayList<>();

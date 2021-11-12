@@ -19,7 +19,7 @@ public class CategoryModel extends GenericModel {
 
     @Override
     public String toString() {
-        return "com.endava.store.storepets.model.CategoryModel[id=" + id + "]";
+        return "com.endava.store.storepets.model.CategoryModel[id=" + super.getId() + "]";
     }
 
 }

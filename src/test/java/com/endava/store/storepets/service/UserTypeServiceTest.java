@@ -3,8 +3,8 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.UserTypeDto;
 import com.endava.store.storepets.model.UserTypeModel;
 import com.endava.store.storepets.repository.UserTypeRepository;
-import com.endava.store.storepets.testUtilities.UtilityUserTypeData;
-import com.endava.store.storepets.util.UserTypeUtilities;
+import com.endava.store.storepets.testData.UserTypeData;
+import com.endava.store.storepets.TestUtilities.UserTypeUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,9 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 public class UserTypeServiceTest {
@@ -36,7 +33,7 @@ public class UserTypeServiceTest {
 
     @Before
     public void setUp(){
-        listModel = UtilityUserTypeData.getUserTypesModel();
+        listModel = UserTypeData.getUserTypesModel();
     }
 
     @Test
@@ -82,14 +79,6 @@ public class UserTypeServiceTest {
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
     @Test
-    public void testWhenUserTypeDoesNotExistExceptionIsThrown() throws NotFoundException {
-        exceptionRule.expect(NotFoundException.class);
-        exceptionRule.expectMessage("The UserType was not found!");
-        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
-        userTypeService.existUserType(listModel.get(1).getId());
-    }
-
-    @Test
     public void testModelAndDtoFunctionalityUsingSaveUserTypes() {
         Mockito.when(userTypeRepository.saveAll(listModel)).thenReturn(listModel);
 
@@ -109,17 +98,8 @@ public class UserTypeServiceTest {
     @Test
     public void testWhenDeleteUserTypeExceptionIsThrown() throws NotFoundException {
         exceptionRule.expect(NotFoundException.class);
-        exceptionRule.expectMessage("The UserType was not found!");
+        exceptionRule.expectMessage("The User Type was not found!");
         Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
         userTypeService.deleteUserType(listModel.get(1).getId());
-    }
-
-    @Test
-    public void testDeleteUserType() throws NotFoundException {
-        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
-        userTypeService.deleteUserType(listModel.get(1).getId());
-
-        verify(userTypeRepository, times(1)).deleteById(listModel.get(1).getId());
-
     }
 }

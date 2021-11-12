@@ -1,4 +1,4 @@
-package com.endava.store.storepets.util;
+package com.endava.store.storepets.TestUtilities;
 
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;

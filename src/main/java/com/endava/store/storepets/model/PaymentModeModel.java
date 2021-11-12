@@ -19,7 +19,7 @@ public class PaymentModeModel extends GenericModel {
 
     @Override
     public String toString() {
-        return "com.endava.store.storepets.model.PaymentModeModel[id=" + id + "]";
+        return "com.endava.store.storepets.model.PaymentModeModel[id=" + super.getId() + "]";
     }
 
 }

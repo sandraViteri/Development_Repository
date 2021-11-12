@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -18,13 +19,17 @@ public class GenericModel implements Serializable {
     @Id
     @GeneratedValue
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    public UUID id;
+    private UUID id;
     @Basic(optional = false)
+    @NotEmpty(message = "Name is mandatory")
     @Column(name = "\"name\"")
-    public String name;
-    @Basic(optional = false)
+    private String name;
     @Column(name = "\"description\"")
-    public String description;
+    private String description;
+
+    public GenericModel(UUID id) {
+        this.id=id;
+    }
 
     @Override
     public boolean equals(Object object) {

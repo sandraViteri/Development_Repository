@@ -3,7 +3,7 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;
 import com.endava.store.storepets.repository.PaymentModeRepository;
-import com.endava.store.storepets.util.PaymentModeUtilities;
+import com.endava.store.storepets.TestUtilities.PaymentModeUtilities;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class PaymentModeService {
+public class PaymentModeService extends GenericService {
 
     @Autowired
     private PaymentModeRepository paymentModeRepository;
@@ -33,20 +33,13 @@ public class PaymentModeService {
         return PaymentModeUtilities.convertListModelToListDto(listModel);
     }
 
-    public void existPaymentMode(UUID id) throws NotFoundException {
-        if (!paymentModeRepository.existsById(id)) {
-            throw new NotFoundException("The PaymentMode was not found!");
-        }
-    }
-
     public PaymentModeDto updatePaymentMode(PaymentModeDto dto) throws NotFoundException {
-        existPaymentMode(dto.getId());
+        exist(paymentModeRepository, dto.getId(), "Payment Mode");
         PaymentModeModel model = PaymentModeUtilities.convertDtoToPaymentModeModel(dto);
         return PaymentModeUtilities.convertModelToPaymentModeDto(paymentModeRepository.save(model));
     }
 
     public void deletePaymentMode(UUID id) throws NotFoundException {
-        existPaymentMode(id);
-        paymentModeRepository.deleteById(id);
+        delete(paymentModeRepository,id,"Payment Mode");
     }
 }

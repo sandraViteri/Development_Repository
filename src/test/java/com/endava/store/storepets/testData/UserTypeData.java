@@ -1,4 +1,4 @@
-package com.endava.store.storepets.testUtilities;
+package com.endava.store.storepets.testData;
 
 import com.endava.store.storepets.dto.UserTypeDto;
 import com.endava.store.storepets.model.UserTypeModel;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class UtilityUserTypeData {
+public final class UserTypeData {
 
     public static List<UserTypeModel> getUserTypesModel() {
         List<UserTypeModel> listModel = new ArrayList<>();

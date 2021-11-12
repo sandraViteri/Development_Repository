@@ -3,7 +3,7 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;
 import com.endava.store.storepets.repository.CategoryRepository;
-import com.endava.store.storepets.util.CategoryUtilities;
+import com.endava.store.storepets.TestUtilities.CategoryUtilities;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class CategoryService {
+public class CategoryService extends GenericService{
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -33,21 +33,14 @@ public class CategoryService {
         return CategoryUtilities.convertListModelToListDto(listModel);
     }
 
-    public void existCategory(UUID id) throws NotFoundException{
-        if (!categoryRepository.existsById(id)) {
-            throw new NotFoundException("The Category was not found!");
-        }
-    }
-
     public CategoryDto updateCategory(CategoryDto dto) throws NotFoundException {
-        existCategory(dto.getId());
+        exist(categoryRepository, dto.getId(),"Category");
         CategoryModel model = CategoryUtilities.convertDtoToCategoryModel(dto);
         return CategoryUtilities.convertModelToCategoryDto(categoryRepository.save(model));
     }
 
     public void deleteCategory(UUID id) throws NotFoundException {
-        existCategory(id);
-        categoryRepository.deleteById(id);
+        delete(categoryRepository,id, "Category");
     }
 }
 

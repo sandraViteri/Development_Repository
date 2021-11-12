@@ -1,4 +1,4 @@
-package com.endava.store.storepets.testUtilities;
+package com.endava.store.storepets.testData;
 
 import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class UtilityPaymentModeData {
+public final class PaymentModeData {
 
     public static List<PaymentModeModel> getPaymentModesModel() {
         List<PaymentModeModel> listModel = new ArrayList<>();

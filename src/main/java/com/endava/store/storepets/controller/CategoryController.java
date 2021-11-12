@@ -49,7 +49,7 @@ public class CategoryController {
         try {
             return new ResponseEntity<>(categoryService.saveCategories(listDto), HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_IMPLEMENTED);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

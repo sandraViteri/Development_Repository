@@ -3,8 +3,8 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;
 import com.endava.store.storepets.repository.CategoryRepository;
-import com.endava.store.storepets.testUtilities.UtilityCategoryData;
-import com.endava.store.storepets.util.CategoryUtilities;
+import com.endava.store.storepets.testData.CategoryData;
+import com.endava.store.storepets.TestUtilities.CategoryUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,8 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
@@ -36,7 +34,7 @@ public class CategoryServiceTest {
 
     @Before
     public void setUp(){
-        listModel = UtilityCategoryData.getCategoriesModel();
+        listModel = CategoryData.getCategoriesModel();
     }
 
     @Test
@@ -81,13 +79,6 @@ public class CategoryServiceTest {
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
-    @Test
-    public void testWhenCategoryDoesNotExistExceptionIsThrown() throws NotFoundException {
-        exceptionRule.expect(NotFoundException.class);
-        exceptionRule.expectMessage("The Category was not found!");
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(false);
-        categoryService.existCategory(listModel.get(1).getId());
-    }
 
     @Test
     public void testModelAndDtoFunctionalityUsingSaveCategories() {
@@ -112,14 +103,5 @@ public class CategoryServiceTest {
         exceptionRule.expectMessage("The Category was not found!");
         Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(false);
         categoryService.deleteCategory(listModel.get(1).getId());
-    }
-
-    @Test
-    public void testDeleteCategory() throws NotFoundException {
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(true);
-        categoryService.deleteCategory(listModel.get(1).getId());
-
-        verify(categoryRepository, times(1)).deleteById(listModel.get(1).getId());
-
     }
 }
