@@ -15,5 +15,4 @@ public class CategoryDto implements Serializable {
     private UUID id;
     private String name;
     private String description;
-
 }

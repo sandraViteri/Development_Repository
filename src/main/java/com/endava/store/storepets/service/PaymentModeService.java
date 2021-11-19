@@ -3,7 +3,7 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;
 import com.endava.store.storepets.repository.PaymentModeRepository;
-import com.endava.store.storepets.TestUtilities.PaymentModeUtilities;
+import com.endava.store.storepets.testutilities.PaymentModeUtilities;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

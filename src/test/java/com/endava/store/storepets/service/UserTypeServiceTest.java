@@ -3,8 +3,8 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.UserTypeDto;
 import com.endava.store.storepets.model.UserTypeModel;
 import com.endava.store.storepets.repository.UserTypeRepository;
-import com.endava.store.storepets.testData.UserTypeData;
-import com.endava.store.storepets.TestUtilities.UserTypeUtilities;
+import com.endava.store.storepets.testdata.UserTypeData;
+import com.endava.store.storepets.testutilities.UserTypeUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,6 +19,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
@@ -102,4 +105,13 @@ public class UserTypeServiceTest {
         Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
         userTypeService.deleteUserType(listModel.get(1).getId());
     }
+
+    @Test
+    public void testDeleteUser() throws NotFoundException {
+        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        userTypeService.deleteUserType(listModel.get(1).getId());
+
+        verify(userTypeRepository, times(1)).deleteById(listModel.get(1).getId());
+    }
+
 }

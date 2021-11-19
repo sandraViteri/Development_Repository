@@ -27,10 +27,6 @@ public class GenericModel implements Serializable {
     @Column(name = "\"description\"")
     private String description;
 
-    public GenericModel(UUID id) {
-        this.id=id;
-    }
-
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof GenericModel)) {

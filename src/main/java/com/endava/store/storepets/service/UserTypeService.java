@@ -3,7 +3,7 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.UserTypeDto;
 import com.endava.store.storepets.model.UserTypeModel;
 import com.endava.store.storepets.repository.UserTypeRepository;
-import com.endava.store.storepets.TestUtilities.UserTypeUtilities;
+import com.endava.store.storepets.testutilities.UserTypeUtilities;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

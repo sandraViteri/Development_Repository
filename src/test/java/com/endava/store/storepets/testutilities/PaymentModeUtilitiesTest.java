@@ -1,8 +1,8 @@
-package com.endava.store.storepets.TestUtilities;
+package com.endava.store.storepets.testutilities;
 
 import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;
-import com.endava.store.storepets.testData.PaymentModeData;
+import com.endava.store.storepets.testdata.PaymentModeData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

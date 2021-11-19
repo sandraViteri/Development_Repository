@@ -21,6 +21,5 @@ public class CategoryModel extends GenericModel {
     public String toString() {
         return "com.endava.store.storepets.model.CategoryModel[id=" + super.getId() + "]";
     }
-
 }
 

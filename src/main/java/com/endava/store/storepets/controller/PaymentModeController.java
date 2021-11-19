@@ -70,7 +70,7 @@ public class PaymentModeController {
     public ResponseEntity<Object> deletePaymentMode(@RequestParam(name = "id") UUID id) {
         try {
             paymentModeService.deletePaymentMode(id);
-            return new ResponseEntity<>(id + " Was deleted", HttpStatus.OK);
+            return new ResponseEntity<>(String.format("%s Was deleted", id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }

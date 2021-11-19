@@ -3,8 +3,8 @@ package com.endava.store.storepets.service;
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;
 import com.endava.store.storepets.repository.CategoryRepository;
-import com.endava.store.storepets.testData.CategoryData;
-import com.endava.store.storepets.TestUtilities.CategoryUtilities;
+import com.endava.store.storepets.testdata.CategoryData;
+import com.endava.store.storepets.testutilities.CategoryUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,6 +19,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -95,6 +98,14 @@ public class CategoryServiceTest {
                 listDto.get(listDto.size() - 1).getName());
         Assert.assertEquals("Not valid Description ", listModel.get(listModel.size() - 1).getDescription(),
                 listDto.get(listDto.size() - 1).getDescription());
+    }
+
+    @Test
+    public void testDeleteUser() throws NotFoundException {
+        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        categoryService.deleteCategory(listModel.get(1).getId());
+
+        verify(categoryRepository, times(1)).deleteById(listModel.get(1).getId());
     }
 
     @Test

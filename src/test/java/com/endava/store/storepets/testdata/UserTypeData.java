@@ -1,4 +1,4 @@
-package com.endava.store.storepets.testData;
+package com.endava.store.storepets.testdata;
 
 import com.endava.store.storepets.dto.UserTypeDto;
 import com.endava.store.storepets.model.UserTypeModel;
@@ -22,7 +22,7 @@ public final class UserTypeData {
     }
 
     public static List<UserTypeDto> getUserTypesDto() {
-            List<UserTypeDto> listDto = new ArrayList<>();
+        List<UserTypeDto> listDto = new ArrayList<>();
         listDto.add(0, new UserTypeDto(UUID.fromString("09df742e-33a3-11ec-8f02-6949411d60df"),
                 "testNameDtoOne", "TestUserTypeDescriptionDtoOne"));
         listDto.add(1, new UserTypeDto(UUID.fromString("09df742f-33a3-11ec-8f02-6949411d60df"),

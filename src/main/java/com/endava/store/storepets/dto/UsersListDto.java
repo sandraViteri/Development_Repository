@@ -13,6 +13,6 @@ import java.util.List;
 public class UsersListDto {
 
     @Valid
-    private List<UsersDto> users;
+    private List<UserDto> users;
 
 }

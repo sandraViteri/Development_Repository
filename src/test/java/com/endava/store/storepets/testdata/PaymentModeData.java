@@ -1,4 +1,4 @@
-package com.endava.store.storepets.testData;
+package com.endava.store.storepets.testdata;
 
 import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;
@@ -22,7 +22,7 @@ public final class PaymentModeData {
     }
 
     public static List<PaymentModeDto> getPaymentModesDto() {
-            List<PaymentModeDto> listDto = new ArrayList<>();
+        List<PaymentModeDto> listDto = new ArrayList<>();
         listDto.add(0, new PaymentModeDto(UUID.fromString("09df742e-33a3-11ec-8f02-6949411d60df"),
                 "testNameDtoOne", "TestPaymentModeDescriptionDtoOne"));
         listDto.add(1, new PaymentModeDto(UUID.fromString("09df742f-33a3-11ec-8f02-6949411d60df"),

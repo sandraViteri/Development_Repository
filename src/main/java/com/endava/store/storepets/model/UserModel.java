@@ -13,7 +13,7 @@ import java.util.UUID;
 @Entity
 @Data
 @Table(schema = "public", name = "\"users\"")
-public class UsersModel{
+public class UserModel {
 
     public static final long serialVersionUID = 1L;
     @Id
@@ -25,7 +25,7 @@ public class UsersModel{
     private String idNumber;
     @Basic(optional = false)
     @Column(name = "\"id_number_type\"")
-    private String idNumberType;
+    private String idType;
     @Basic(optional = false)
     @Column(name = "\"name\"")
     private String name;
@@ -48,10 +48,10 @@ public class UsersModel{
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof UsersModel)) {
+        if (!(object instanceof UserModel)) {
             return false;
         }
-        UsersModel other = (UsersModel) object;
+        UserModel other = (UserModel) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 

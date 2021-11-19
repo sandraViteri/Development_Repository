@@ -1,7 +1,7 @@
 package com.endava.store.storepets.service;
 
 import com.endava.store.storepets.model.CategoryModel;
-import com.endava.store.storepets.testData.CategoryData;
+import com.endava.store.storepets.testdata.CategoryData;
 import javassist.NotFoundException;
 import org.junit.Before;
 import org.junit.Rule;

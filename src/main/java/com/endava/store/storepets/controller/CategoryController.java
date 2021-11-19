@@ -70,7 +70,7 @@ public class CategoryController {
     public ResponseEntity<Object> deleteCategory(@RequestParam(name = "id") UUID id) {
         try {
             categoryService.deleteCategory(id);
-            return new ResponseEntity<>(id + " Was deleted", HttpStatus.OK);
+            return new ResponseEntity<>(String.format("%s Was deleted", id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }

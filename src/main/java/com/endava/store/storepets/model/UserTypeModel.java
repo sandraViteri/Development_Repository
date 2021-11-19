@@ -21,6 +21,5 @@ public class UserTypeModel extends GenericModel {
     public String toString() {
         return "com.endava.store.storepets.model.UserTypeModel[id=" + super.getId() + "]";
     }
-
 }
 

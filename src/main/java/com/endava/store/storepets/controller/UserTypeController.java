@@ -59,7 +59,7 @@ public class UserTypeController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> updateUserType(@RequestBody UserTypeDto dto) {
         try {
-           return new ResponseEntity<>(userTypeService.updateUserType(dto), HttpStatus.OK);
+            return new ResponseEntity<>(userTypeService.updateUserType(dto), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -70,7 +70,7 @@ public class UserTypeController {
     public ResponseEntity<Object> deleteUserType(@RequestParam(name = "id") UUID id) {
         try {
             userTypeService.deleteUserType(id);
-            return new ResponseEntity<>(id + " Was deleted", HttpStatus.OK);
+            return new ResponseEntity<>(String.format("%s Was deleted", id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
