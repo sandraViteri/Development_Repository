@@ -1,6 +1,6 @@
-package com.endava.store.storepets.testutilities;
+package com.endava.store.storepets.utilities;
 
-import com.endava.store.storepets.testutilities.validations.IdTypeValidator;
+import com.endava.store.storepets.utilities.validator.IdTypeValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -41,7 +41,7 @@ public class IdTypeValidatorTest {
     }
 
     @Test
-    public void testWhenIdTypeIsCC() {
+    public void testWhenIdTypeIsValid() {
         boolean result = idTypeValidator.isValid(idType, constraintValidatorContext);
         Assertions.assertTrue(result);
     }

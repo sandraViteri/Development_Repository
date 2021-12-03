@@ -1,7 +1,7 @@
 package com.endava.store.storepets.dto;
 
-import com.endava.store.storepets.testutilities.validations.AgeValidatorConstrain;
-import com.endava.store.storepets.testutilities.validations.IdTypeValidatorConstrain;
+import com.endava.store.storepets.utilities.validator.AgeValidatorConstrain;
+import com.endava.store.storepets.utilities.validator.IdTypeValidatorConstrain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.endava.store.storepets.testutilities.validations;
+package com.endava.store.storepets.utilities.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

@@ -1,16 +1,16 @@
-package com.endava.store.storepets.testutilities.validations;
+package com.endava.store.storepets.utilities.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = IdTypeValidator.class)
+@Constraint(validatedBy = AgeValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface IdTypeValidatorConstrain {
+public @interface AgeValidatorConstrain {
 
-    String message() default "No valid Id Type";
+    String message() default "No valid date";
 
     Class<?>[] groups() default {};
 

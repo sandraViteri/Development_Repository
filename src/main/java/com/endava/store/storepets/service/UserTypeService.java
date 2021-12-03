@@ -1,9 +1,10 @@
 package com.endava.store.storepets.service;
 
+import com.endava.store.storepets.constants.Constants;
 import com.endava.store.storepets.dto.UserTypeDto;
 import com.endava.store.storepets.model.UserTypeModel;
 import com.endava.store.storepets.repository.UserTypeRepository;
-import com.endava.store.storepets.testutilities.UserTypeUtilities;
+import com.endava.store.storepets.utilities.UserTypeUtilities;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +35,12 @@ public class UserTypeService extends GenericService{
     }
 
     public UserTypeDto updateUserType(UserTypeDto dto) throws NotFoundException {
-        exist(userTypeRepository,dto.getId(),"User Type");
+        exist(userTypeRepository,dto.getId(), Constants.USER_TYPE);
         UserTypeModel model = UserTypeUtilities.convertDtoToUserTypeModel(dto);
         return UserTypeUtilities.convertModelToUserTypeDto(userTypeRepository.save(model));
     }
 
     public void deleteUserType(UUID id) throws NotFoundException {
-        delete(userTypeRepository,id,"User Type");
+        delete(userTypeRepository,id,Constants.USER_TYPE);
     }
 }

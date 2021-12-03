@@ -1,5 +1,6 @@
 package com.endava.store.storepets.service;
 
+import com.endava.store.storepets.constants.Constants;
 import javassist.NotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ public class GenericService {
 
     public <T extends JpaRepository > void exist(T repository, UUID id, String errorMsg) throws NotFoundException{
         if (!repository.existsById(id)) {
-            throw new NotFoundException(String.format("The %s was not found!",errorMsg));
+            throw new NotFoundException(String.format(Constants.NOT_FOUND_MESSAGE,errorMsg));
         }
     }
 

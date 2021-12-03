@@ -1,6 +1,6 @@
-package com.endava.store.storepets.testutilities;
+package com.endava.store.storepets.utilities;
 
-import com.endava.store.storepets.testutilities.validations.AgeValidator;
+import com.endava.store.storepets.utilities.validator.AgeValidator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

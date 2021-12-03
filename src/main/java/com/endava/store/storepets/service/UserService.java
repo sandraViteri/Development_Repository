@@ -1,9 +1,10 @@
 package com.endava.store.storepets.service;
 
+import com.endava.store.storepets.constants.Constants;
 import com.endava.store.storepets.dto.UserDto;
 import com.endava.store.storepets.model.UserModel;
 import com.endava.store.storepets.repository.UserRepository;
-import com.endava.store.storepets.testutilities.UserUtilities;
+import com.endava.store.storepets.utilities.UserUtilities;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -43,17 +44,17 @@ public class UserService extends GenericService {
         Example<UserModel> example = Example.of(model);
 
         if (!userRepository.findAll(example).isEmpty()) {
-            throw new DuplicateKeyException(String.format("The user %s already exist!", idNumber));
+            throw new DuplicateKeyException(String.format(Constants.USER_ALREADY_EXIST_MESSAGE, idNumber));
         }
     }
 
     public UserDto updateUsers(UserDto dto) throws NotFoundException {
-        exist(userRepository,dto.getId(),"User");
+        exist(userRepository,dto.getId(),Constants.USER);
         UserModel model = UserUtilities.convertDtoToUsersModel(dto);
         return UserUtilities.convertModelToUsersDto(userRepository.save(model));
     }
 
     public void deleteUser(UUID id) throws NotFoundException {
-        delete(userRepository,id,"User");
+        delete(userRepository,id,Constants.USER);
     }
 }

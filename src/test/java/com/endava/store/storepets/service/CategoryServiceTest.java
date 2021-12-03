@@ -4,7 +4,7 @@ import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;
 import com.endava.store.storepets.repository.CategoryRepository;
 import com.endava.store.storepets.testdata.CategoryData;
-import com.endava.store.storepets.testutilities.CategoryUtilities;
+import com.endava.store.storepets.utilities.CategoryUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,9 +1,10 @@
 package com.endava.store.storepets.service;
 
+import com.endava.store.storepets.constants.Constants;
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;
 import com.endava.store.storepets.repository.CategoryRepository;
-import com.endava.store.storepets.testutilities.CategoryUtilities;
+import com.endava.store.storepets.utilities.CategoryUtilities;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,13 +35,13 @@ public class CategoryService extends GenericService{
     }
 
     public CategoryDto updateCategory(CategoryDto dto) throws NotFoundException {
-        exist(categoryRepository,dto.getId(),"Category");
+        exist(categoryRepository,dto.getId(), Constants.CATEGORY);
         CategoryModel model = CategoryUtilities.convertDtoToCategoryModel(dto);
         return CategoryUtilities.convertModelToCategoryDto(categoryRepository.save(model));
     }
 
     public void deleteCategory(UUID id) throws NotFoundException {
-        delete(categoryRepository,id, "Category");
+        delete(categoryRepository,id, Constants.CATEGORY);
     }
 }
 

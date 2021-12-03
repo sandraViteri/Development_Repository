@@ -1,8 +1,8 @@
-package com.endava.store.storepets.testutilities;
+package com.endava.store.storepets.utilities;
 
-import com.endava.store.storepets.dto.PaymentModeDto;
-import com.endava.store.storepets.model.PaymentModeModel;
-import com.endava.store.storepets.testdata.PaymentModeData;
+import com.endava.store.storepets.dto.CategoryDto;
+import com.endava.store.storepets.model.CategoryModel;
+import com.endava.store.storepets.testdata.CategoryData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,21 +11,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
-public class PaymentModeUtilitiesTest {
+public class CategoryUtilitiesTest {
 
     @Test
-    public void testConvertModelToPaymentModeDto() {
-        PaymentModeModel model = PaymentModeData.getPaymentModesModel().get(1);
-        PaymentModeDto dto=PaymentModeUtilities.convertModelToPaymentModeDto(model);
+    public void testConvertModelToCategoryDto() {
+        CategoryModel model = CategoryData.getCategoriesModel().get(1);
+        CategoryDto dto=CategoryUtilities.convertModelToCategoryDto(model);
         Assert.assertEquals("Not valid Description ", model.getDescription(), dto.getDescription());
         Assert.assertEquals("Not valid Id ", model.getId(), dto.getId());
         Assert.assertEquals("Not valid Name ", model.getName(), dto.getName());
     }
 
     @Test
-    public void testConvertDtoToPaymentModeModel() {
-        PaymentModeDto dto = PaymentModeData.getPaymentModesDto().get(1);
-        PaymentModeModel model = PaymentModeUtilities.convertDtoToPaymentModeModel(dto);
+    public void testConvertDtoToCategoryModel() {
+        CategoryDto dto = CategoryData.getCategoriesDto().get(1);
+        CategoryModel model = CategoryUtilities.convertDtoToCategoryModel(dto);
         Assert.assertEquals("Not valid Description ", dto.getDescription(), model.getDescription());
         Assert.assertEquals("Not valid Id ", dto.getId(), model.getId());
         Assert.assertEquals("Not valid Name ", dto.getName(), model.getName());

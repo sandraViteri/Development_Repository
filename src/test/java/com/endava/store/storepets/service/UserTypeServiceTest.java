@@ -4,7 +4,7 @@ import com.endava.store.storepets.dto.UserTypeDto;
 import com.endava.store.storepets.model.UserTypeModel;
 import com.endava.store.storepets.repository.UserTypeRepository;
 import com.endava.store.storepets.testdata.UserTypeData;
-import com.endava.store.storepets.testutilities.UserTypeUtilities;
+import com.endava.store.storepets.utilities.UserTypeUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -113,5 +113,4 @@ public class UserTypeServiceTest {
 
         verify(userTypeRepository, times(1)).deleteById(listModel.get(1).getId());
     }
-
 }

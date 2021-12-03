@@ -4,7 +4,7 @@ import com.endava.store.storepets.dto.UserDto;
 import com.endava.store.storepets.model.UserModel;
 import com.endava.store.storepets.repository.UserRepository;
 import com.endava.store.storepets.testdata.UsersData;
-import com.endava.store.storepets.testutilities.UserUtilities;
+import com.endava.store.storepets.utilities.UserUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -116,7 +116,6 @@ public class UserServiceTest {
         Assert.assertEquals("Not valid Phone ", listModel.get(1).getPhone(), dto.getPhone());
     }
 
-
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
     @Test
@@ -165,18 +164,6 @@ public class UserServiceTest {
         userService.deleteUser(listModel.get(1).getId());
     }
 
-//    @Test
-//    public void testWhenExistUserByIdNumberExceptionIsThrown() throws DuplicateKeyException {
-//        exceptionRule.expect(DuplicateKeyException.class);
-//        exceptionRule.expectMessage(String.format("The user %s already exist!", listModel.get(1).getIdNumber()));
-//        UserModel model= new UserModel();
-//        model.setIdNumber("6666333");
-//        Example<UserModel> example = Example.of(model);
-//        Mockito.when(!userRepository.findAll(example).isEmpty()).thenThrow(new DuplicateKeyException(
-//                String.format("The user %s already exist!", listModel.get(1).getIdNumber())));
-//        userService.existUserByIdNumber(listModel.get(1).getIdNumber());
-//    }
-
     @Test
     public void testWhenExistUserByIdNumberExceptionIsThrown() throws DuplicateKeyException {
         exceptionRule.expect(DuplicateKeyException.class);
@@ -196,6 +183,4 @@ public class UserServiceTest {
         Example<UserModel> example = Example.of(model);
         verify(userRepository, times(1)).findAll(example);
     }
-
-
 }

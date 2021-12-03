@@ -1,4 +1,4 @@
-package com.endava.store.storepets.testutilities;
+package com.endava.store.storepets.utilities;
 
 import com.endava.store.storepets.dto.UserTypeDto;
 import com.endava.store.storepets.model.UserTypeModel;

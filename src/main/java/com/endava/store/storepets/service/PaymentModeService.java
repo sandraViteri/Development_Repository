@@ -1,9 +1,10 @@
 package com.endava.store.storepets.service;
 
+import com.endava.store.storepets.constants.Constants;
 import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;
 import com.endava.store.storepets.repository.PaymentModeRepository;
-import com.endava.store.storepets.testutilities.PaymentModeUtilities;
+import com.endava.store.storepets.utilities.PaymentModeUtilities;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +35,12 @@ public class PaymentModeService extends GenericService {
     }
 
     public PaymentModeDto updatePaymentMode(PaymentModeDto dto) throws NotFoundException {
-        exist(paymentModeRepository, dto.getId(), "Payment Mode");
+        exist(paymentModeRepository, dto.getId(), Constants.PAYMENT_MODE);
         PaymentModeModel model = PaymentModeUtilities.convertDtoToPaymentModeModel(dto);
         return PaymentModeUtilities.convertModelToPaymentModeDto(paymentModeRepository.save(model));
     }
 
     public void deletePaymentMode(UUID id) throws NotFoundException {
-        delete(paymentModeRepository,id,"Payment Mode");
+        delete(paymentModeRepository,id,Constants.PAYMENT_MODE);
     }
 }

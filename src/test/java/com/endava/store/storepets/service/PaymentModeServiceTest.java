@@ -4,7 +4,7 @@ import com.endava.store.storepets.dto.PaymentModeDto;
 import com.endava.store.storepets.model.PaymentModeModel;
 import com.endava.store.storepets.repository.PaymentModeRepository;
 import com.endava.store.storepets.testdata.PaymentModeData;
-import com.endava.store.storepets.testutilities.PaymentModeUtilities;
+import com.endava.store.storepets.utilities.PaymentModeUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
