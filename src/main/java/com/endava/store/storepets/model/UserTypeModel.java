@@ -9,17 +9,17 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @Entity
-@Table(schema = "public", name = "\"categories\"")
-public class CategoryModel extends GenericModel {
+@Table(schema = "public", name = "\"user_types\"")
+public class UserTypeModel extends GenericModel {
 
     @Builder
-    public CategoryModel(UUID id, String name, String description) {
+    public UserTypeModel(UUID id, String name, String description) {
         super(id, name, description);
     }
 
     @Override
     public String toString() {
-        return "com.endava.store.storepets.model.CategoryModel[id=" + super.getId() + "]";
+        return "com.endava.store.storepets.model.UserTypeModel[id=" + super.getId() + "]";
     }
 }
 

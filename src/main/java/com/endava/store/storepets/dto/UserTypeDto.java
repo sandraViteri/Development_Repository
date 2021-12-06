@@ -10,9 +10,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CategoryDto implements Serializable {
+public class UserTypeDto implements Serializable {
 
     private UUID id;
     private String name;
     private String description;
+
 }

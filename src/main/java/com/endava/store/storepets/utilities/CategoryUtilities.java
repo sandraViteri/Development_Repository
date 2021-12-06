@@ -1,4 +1,4 @@
-package com.endava.store.storepets.util;
+package com.endava.store.storepets.utilities;
 
 import com.endava.store.storepets.dto.CategoryDto;
 import com.endava.store.storepets.model.CategoryModel;
@@ -27,5 +27,4 @@ public final class CategoryUtilities {
     public static List<CategoryModel> convertListDtoToListModel(List<CategoryDto> listDto) {
         return listDto.stream().map(CategoryUtilities::convertDtoToCategoryModel).collect(Collectors.toList());
     }
-
 }

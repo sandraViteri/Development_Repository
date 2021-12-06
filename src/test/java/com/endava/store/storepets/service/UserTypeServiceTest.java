@@ -1,10 +1,10 @@
 package com.endava.store.storepets.service;
 
-import com.endava.store.storepets.dto.CategoryDto;
-import com.endava.store.storepets.model.CategoryModel;
-import com.endava.store.storepets.repository.CategoryRepository;
-import com.endava.store.storepets.testdata.CategoryData;
-import com.endava.store.storepets.utilities.CategoryUtilities;
+import com.endava.store.storepets.dto.UserTypeDto;
+import com.endava.store.storepets.model.UserTypeModel;
+import com.endava.store.storepets.repository.UserTypeRepository;
+import com.endava.store.storepets.testdata.UserTypeData;
+import com.endava.store.storepets.utilities.UserTypeUtilities;
 import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,28 +23,27 @@ import java.util.List;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
-public class CategoryServiceTest {
+public class UserTypeServiceTest {
 
     @InjectMocks
-    private CategoryService categoryService;
+    private UserTypeService userTypeService;
     @Mock
-    private CategoryRepository categoryRepository;
+    private UserTypeRepository userTypeRepository;
 
-    List<CategoryModel> listModel;
+    List<UserTypeModel> listModel;
 
     @Before
     public void setUp(){
-        listModel = CategoryData.getCategoriesModel();
+        listModel = UserTypeData.getUserTypesModel();
     }
 
     @Test
-    public void testDtoEqualToModelWhenGetCategoryById() {
-        Mockito.when(categoryRepository.getById(listModel.get(1).getId())).thenReturn(listModel.get(1));
+    public void testDtoEqualToModelWhenGetUserTypeById() {
+        Mockito.when(userTypeRepository.getById(listModel.get(1).getId())).thenReturn(listModel.get(1));
 
-        CategoryDto dto = categoryService.getCategory(listModel.get(1).getId());
+        UserTypeDto dto = userTypeService.getUserType(listModel.get(1).getId());
 
         Assert.assertEquals("Not valid Id ", listModel.get(1).getId(), dto.getId());
         Assert.assertEquals("Not valid Name ", listModel.get(1).getName(), dto.getName());
@@ -52,10 +51,10 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testDtoListEqualToModelListWhenGetAllCategories() {
-        Mockito.when(categoryRepository.findAll()).thenReturn(listModel);
+    public void testDtoListEqualToModelListWhenGetAllUserTypes() {
+        Mockito.when(userTypeRepository.findAll()).thenReturn(listModel);
 
-        List<CategoryDto> listDtoResult = categoryService.getCategories();
+        List<UserTypeDto> listDtoResult = userTypeService.getUserTypes();
 
         Assert.assertEquals("The data size does not match with expected data size", listModel.size()
                 , listDtoResult.size());
@@ -68,11 +67,11 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testDtoListEqualToModelListWhenUpdateCategory() throws NotFoundException {
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(true);
-        Mockito.when(categoryRepository.save(listModel.get(1))).thenReturn(listModel.get(1));
+    public void testDtoListEqualToModelListWhenUpdateUserType() throws NotFoundException {
+        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        Mockito.when(userTypeRepository.save(listModel.get(1))).thenReturn(listModel.get(1));
 
-        CategoryDto dto = categoryService.updateCategory(new CategoryDto(listModel.get(1).getId(),
+        UserTypeDto dto = userTypeService.updateUserType(new UserTypeDto(listModel.get(1).getId(),
                 listModel.get(1).getName(), listModel.get(1).getDescription()));
 
         Assert.assertEquals("Not valid Id ", listModel.get(1).getId(), dto.getId());
@@ -82,13 +81,12 @@ public class CategoryServiceTest {
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
-
     @Test
-    public void testModelAndDtoFunctionalityUsingSaveCategories() {
-        Mockito.when(categoryRepository.saveAll(listModel)).thenReturn(listModel);
+    public void testModelAndDtoFunctionalityUsingSaveUserTypes() {
+        Mockito.when(userTypeRepository.saveAll(listModel)).thenReturn(listModel);
 
-        List<CategoryDto> listDto = categoryService.saveCategories(
-                CategoryUtilities.convertListModelToListDto(listModel));
+        List<UserTypeDto> listDto = userTypeService.saveUserTypes(
+                UserTypeUtilities.convertListModelToListDto(listModel));
 
         Assert.assertEquals("The data size does not match with expected data size",
                 listModel.size(), listDto.size());
@@ -101,18 +99,18 @@ public class CategoryServiceTest {
     }
 
     @Test
-    public void testDeleteUser() throws NotFoundException {
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(true);
-        categoryService.deleteCategory(listModel.get(1).getId());
-
-        verify(categoryRepository, times(1)).deleteById(listModel.get(1).getId());
+    public void testWhenDeleteUserTypeExceptionIsThrown() throws NotFoundException {
+        exceptionRule.expect(NotFoundException.class);
+        exceptionRule.expectMessage("The User Type was not found!");
+        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(false);
+        userTypeService.deleteUserType(listModel.get(1).getId());
     }
 
     @Test
-    public void testWhenDeleteCategoryExceptionIsThrown() throws NotFoundException {
-        exceptionRule.expect(NotFoundException.class);
-        exceptionRule.expectMessage("The Category was not found!");
-        Mockito.when(categoryRepository.existsById(listModel.get(1).getId())).thenReturn(false);
-        categoryService.deleteCategory(listModel.get(1).getId());
+    public void testDeleteUser() throws NotFoundException {
+        Mockito.when(userTypeRepository.existsById(listModel.get(1).getId())).thenReturn(true);
+        userTypeService.deleteUserType(listModel.get(1).getId());
+
+        verify(userTypeRepository, times(1)).deleteById(listModel.get(1).getId());
     }
 }
