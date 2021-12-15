@@ -22,14 +22,14 @@ public class AgeValidatorTest {
     private ConstraintValidatorContext constraintValidatorContext;
 
     @Test
-    public void testWheIdTypeIsValid(){
+    public void VerifyUserIsLegalAge(){
         Date date = java.sql.Date.valueOf("2000-11-15");
         boolean result = ageValidator.isValid(date, constraintValidatorContext);
         Assert.assertTrue(result);
     }
 
     @Test
-    public void testWheIdTypeIsNotValid(){
+    public void VerifyUserIsNotLegalAge(){
         Date date = new Date();
         boolean result = ageValidator.isValid(date, constraintValidatorContext);
         Assert.assertFalse(result);

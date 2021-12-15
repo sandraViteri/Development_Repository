@@ -64,6 +64,6 @@ public class InvoiceModel {
 
     @Override
     public String toString() {
-        return "com.endava.store.storepets.model.UsersModel[id=" + id + "]";
+        return "com.endava.store.storepets.model.InvoiceModel[id=" + id + "]";
     }
 }
