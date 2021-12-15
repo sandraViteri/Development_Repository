@@ -12,46 +12,46 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Data
-@Table(schema = "public", name = "\"users\"")
-public class UserModel {
+@Table(schema = "public", name = "\"invoices\"")
+public class InvoiceModel {
 
     public static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
     private UUID id;
+
+
     @Basic(optional = false)
-    @Column(name = "\"id_number\"")
-    private String idNumber;
+    @Column(name = "\"user\"")
+    private UUID user;
+
     @Basic(optional = false)
-    @Column(name = "\"id_number_type\"")
-    private String idType;
+    @Column(name = "\"payment_mode\"")
+    private UUID paymentMode;
+
     @Basic(optional = false)
-    @Column(name = "\"name\"")
-    private String name;
+    @Column(name = "\"date\"")
+    private Date date;
+
     @Basic(optional = false)
-    @Column(name = "\"lastname\"")
-    private String lastname;
+    @Column(name = "\"total_value\"")
+    private Double totalValue;
+
     @Basic(optional = false)
-    @Column(name = "\"address\"")
-    private String address;
-    @Basic(optional = false)
-    @Column(name = "\"birthday_date\"")
-    private Date birthdayDay;
-    @Column(name = "\"email_address\"")
-    private String emailAddress;
-    @Basic(optional = false)
-    @Column(name = "\"type\"")
-    private UUID type;
-    @Column(name = "\"phone\"")
-    private String phone;
+    @Column(name = "\"taxes\"")
+    private Double taxes;
+
+    @Column(name = "\"discount\"")
+    private Double discount;
+
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof UserModel)) {
+        if (!(object instanceof InvoiceModel)) {
             return false;
         }
-        UserModel other = (UserModel) object;
+        InvoiceModel other = (InvoiceModel) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
@@ -64,6 +64,6 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "com.endava.store.storepets.model.UserModel[id=" + id + "]";
+        return "com.endava.store.storepets.model.InvoiceModel[id=" + id + "]";
     }
 }
