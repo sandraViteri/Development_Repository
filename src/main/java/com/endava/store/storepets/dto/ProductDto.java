@@ -25,7 +25,7 @@ public class ProductDto implements Serializable {
     @Size(min = 5, max = 300, message = "{validation.productDto.description.empty}")
     private String description;
 
-    @NotEmpty(message = "validation.productDto.color.empty")
+    @NotEmpty(message = "{validation.productDto.color.empty}")
     private String color;
 
     @NotEmpty(message = "{validation.productDto.size.empty}")

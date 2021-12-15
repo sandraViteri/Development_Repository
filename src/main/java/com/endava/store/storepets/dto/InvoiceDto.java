@@ -1,5 +1,6 @@
 package com.endava.store.storepets.dto;
 
+import com.endava.store.storepets.utilities.validator.CurrentDateValidatorConstrain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,22 +18,23 @@ public class InvoiceDto implements Serializable {
 
     private UUID id;
 
-    @NotNull(message = "{validation.invoicesDto.user.empty}")
+    @NotNull(message = "{validation.invoiceDto.user.empty}")
     private UUID user;
 
-    @NotNull(message = "{validation.invoicesDto.paymentMode.empty}")
+    @NotNull(message = "{validation.invoiceDto.paymentMode.empty}")
     private UUID paymentMode;
 
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Bogota")
-    @NotNull(message = "{validation.invoicesDto.date.empty}")
+    @NotNull(message = "{validation.invoiceDto.date.empty}")
+    @CurrentDateValidatorConstrain(message = "{validation.invoiceDto.date.validate}")
     private Date date;
 
-    @NotNull(message = "{validation.invoicesDto.totalValue.empty}")
+    @NotNull(message = "{validation.invoiceDto.totalValue.empty}")
     private Double totalValue;
 
-    @NotNull(message = "{validation.invoicesDto.taxes.empty}")
+    @NotNull(message = "{validation.invoiceDto.taxes.empty}")
     private Double taxes;
 
-    @NotNull(message = "{validation.invoicesDto.discount.empty}")
+    @NotNull(message = "{validation.invoiceDto.discount.empty}")
     private Double discount;
 }

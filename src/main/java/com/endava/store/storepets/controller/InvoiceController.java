@@ -31,7 +31,7 @@ public class InvoiceController {
     }
 
     @CrossOrigin("http://localhost")
-    @GetMapping(path = "/invoice/{id}",
+    @GetMapping(path = "/invoices/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getInvoice(@Valid @PathVariable(name = "id") UUID id) {
         try {
