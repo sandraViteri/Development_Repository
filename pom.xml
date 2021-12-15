@@ -16,7 +16,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
-        <sonar.coverage.exclusions>**/com/endava/store/storepets/MainClass.java,**/com/endava/store/storepets/controller/**,**/com/endava/store/storepets/dto/**,**/com/endava/store/storepets/model/**,**/com/endava/store/storepets/repository/**</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>**/com/endava/store/storepets/MainClass.java,**/com/endava/store/storepets/controller/**,**/com/endava/store/storepets/dto/**,**/com/endava/store/storepets/model/**,**/com/endava/store/storepets/repository/**,**/com/endava/store/storepets/SwaggerConfig.java</sonar.coverage.exclusions>
     </properties>
     <dependencies>
         <dependency>
