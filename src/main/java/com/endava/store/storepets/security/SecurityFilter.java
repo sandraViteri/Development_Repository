@@ -35,7 +35,6 @@ public class SecurityFilter extends HttpFilter {
         }
     }
 
-
     public List<String> getAdminList() {
         List<String> adminList = new ArrayList<>();
         adminList.add(Constants.METHOD_PUT + Constants.USERS_URI);

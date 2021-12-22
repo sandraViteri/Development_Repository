@@ -26,6 +26,4 @@ public class Constants {
     public static final String METHOD_PUT = "PUT";
     public static final String METHOD_DELETE = "DEL";
 
-
-
 }
