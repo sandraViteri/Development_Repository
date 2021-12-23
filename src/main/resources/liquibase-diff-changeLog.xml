@@ -42,4 +42,58 @@
     <changeSet author="sviteri (generated)" id="1640273033760-13">
         <dropTable tableName="users"/>
     </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-1">
+        <dropColumn columnName="fghhfd" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-2">
+        <modifyDataType columnName="address" newDataType="varchar(2147)" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-3">
+        <modifyDataType columnName="color" newDataType="varchar(2147)" tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-4">
+        <modifyDataType columnName="description" newDataType="varchar(2147)" tableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-5">
+        <modifyDataType columnName="description" newDataType="varchar(2147)" tableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-6">
+        <modifyDataType columnName="description" newDataType="varchar(2147)" tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-7">
+        <modifyDataType columnName="description" newDataType="varchar(2147)" tableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-8">
+        <modifyDataType columnName="email_address" newDataType="varchar(2147)" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-9">
+        <modifyDataType columnName="id_number" newDataType="varchar(2147)" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-10">
+        <modifyDataType columnName="id_number_type" newDataType="varchar(2147)" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-11">
+        <modifyDataType columnName="lastname" newDataType="varchar(2147)" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-12">
+        <modifyDataType columnName="name" newDataType="varchar(2147)" tableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-13">
+        <modifyDataType columnName="name" newDataType="varchar(2147)" tableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-14">
+        <modifyDataType columnName="name" newDataType="varchar(2147)" tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-15">
+        <modifyDataType columnName="name" newDataType="varchar(2147)" tableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-16">
+        <modifyDataType columnName="name" newDataType="varchar(2147)" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-17">
+        <modifyDataType columnName="phone" newDataType="varchar(2147)" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640296356907-18">
+        <modifyDataType columnName="size" newDataType="varchar(2147)" tableName="products"/>
+    </changeSet>
 </databaseChangeLog>

@@ -94,20 +94,11 @@
             <version>22.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-maven-plugin</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-        <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>3.18.2</version>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -141,6 +132,14 @@
                     <version>3.8.1</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>3.4.1</version>
+                    <configuration>
+                        <propertyFile>src/main/resources/liquibase2.properties</propertyFile>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>3.7.0.1746</version>
@@ -164,14 +163,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.liquibase</groupId>
-                    <artifactId>liquibase-maven-plugin</artifactId>
-                    <version>3.4.1</version>
-                    <configuration>
-                        <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -202,7 +193,6 @@
                 <activatedProperties>docker</activatedProperties>
             </properties>
         </profile>
-
         <profile>
             <id>supa</id>
             <properties>
