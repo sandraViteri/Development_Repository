@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="sviteri (generated)" id="1640271743319-1">
+        <dropColumn columnName="fghhfd" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-1">
+        <dropForeignKeyConstraint baseTableName="details" constraintName="details_fk"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-2">
+        <dropForeignKeyConstraint baseTableName="details" constraintName="details_fk_1"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-3">
+        <dropForeignKeyConstraint baseTableName="invoices" constraintName="invoices_fk"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-4">
+        <dropForeignKeyConstraint baseTableName="invoices" constraintName="invoices_fk_1"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-5">
+        <dropForeignKeyConstraint baseTableName="products" constraintName="products_fk"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-6">
+        <dropForeignKeyConstraint baseTableName="users" constraintName="users_fk"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-7">
+        <dropTable tableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-8">
+        <dropTable tableName="details"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-9">
+        <dropTable tableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-10">
+        <dropTable tableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-11">
+        <dropTable tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-12">
+        <dropTable tableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640273033760-13">
+        <dropTable tableName="users"/>
+    </changeSet>
+</databaseChangeLog>

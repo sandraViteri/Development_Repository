@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="sviteri (generated)" id="1640270115980-1">
+        <createTable tableName="categories">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-2">
+        <createTable tableName="details">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invoice" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-3">
+        <createTable tableName="invoices">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_mode" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taxes" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="numeric"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-4">
+        <createTable tableName="payment_modes">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)"/>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-5">
+        <createTable tableName="products">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+            <column name="color" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stock" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-6">
+        <createTable tableName="user_types">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-7">
+        <createTable tableName="users">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_address" type="VARCHAR(2147)"/>
+            <column name="type" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_number_type" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(2147)"/>
+            <column name="id_number" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-8">
+        <addPrimaryKey columnNames="id" constraintName="category_pk" tableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-9">
+        <addPrimaryKey columnNames="id" constraintName="details_pk" tableName="details"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-10">
+        <addPrimaryKey columnNames="id" constraintName="invoices_pk" tableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-11">
+        <addPrimaryKey columnNames="id" constraintName="payment_modes_pk" tableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-12">
+        <addPrimaryKey columnNames="id" constraintName="product_pk" tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-13">
+        <addPrimaryKey columnNames="id" constraintName="user_types_pk" tableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-14">
+        <addPrimaryKey columnNames="id" constraintName="users_pk" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-15">
+        <addForeignKeyConstraint baseColumnNames="product" baseTableName="details" constraintName="details_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-16">
+        <addForeignKeyConstraint baseColumnNames="invoice" baseTableName="details" constraintName="details_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-17">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="invoices" constraintName="invoices_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-18">
+        <addForeignKeyConstraint baseColumnNames="payment_mode" baseTableName="invoices" constraintName="invoices_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-19">
+        <addForeignKeyConstraint baseColumnNames="category" baseTableName="products" constraintName="products_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640270115980-20">
+        <addForeignKeyConstraint baseColumnNames="type" baseTableName="users" constraintName="users_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-1">
+        <createTable tableName="categories">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-2">
+        <createTable tableName="details">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invoice" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-3">
+        <createTable tableName="invoices">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_mode" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taxes" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="numeric"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-4">
+        <createTable tableName="payment_modes">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)"/>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-5">
+        <createTable tableName="products">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+            <column name="color" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stock" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-6">
+        <createTable tableName="user_types">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-7">
+        <createTable tableName="users">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_address" type="VARCHAR(2147)"/>
+            <column name="type" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_number_type" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(2147)"/>
+            <column name="id_number" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-8">
+        <addPrimaryKey columnNames="id" constraintName="category_pk" tableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-9">
+        <addPrimaryKey columnNames="id" constraintName="details_pk" tableName="details"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-10">
+        <addPrimaryKey columnNames="id" constraintName="invoices_pk" tableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-11">
+        <addPrimaryKey columnNames="id" constraintName="payment_modes_pk" tableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-12">
+        <addPrimaryKey columnNames="id" constraintName="product_pk" tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-13">
+        <addPrimaryKey columnNames="id" constraintName="user_types_pk" tableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-14">
+        <addPrimaryKey columnNames="id" constraintName="users_pk" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-15">
+        <addForeignKeyConstraint baseColumnNames="product" baseTableName="details" constraintName="details_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-16">
+        <addForeignKeyConstraint baseColumnNames="invoice" baseTableName="details" constraintName="details_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-17">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="invoices" constraintName="invoices_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-18">
+        <addForeignKeyConstraint baseColumnNames="payment_mode" baseTableName="invoices" constraintName="invoices_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-19">
+        <addForeignKeyConstraint baseColumnNames="category" baseTableName="products" constraintName="products_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271131339-20">
+        <addForeignKeyConstraint baseColumnNames="type" baseTableName="users" constraintName="users_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-1">
+        <createTable tableName="categories">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-2">
+        <createTable tableName="details">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invoice" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-3">
+        <createTable tableName="invoices">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_mode" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taxes" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="numeric"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-4">
+        <createTable tableName="payment_modes">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)"/>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-5">
+        <createTable tableName="products">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+            <column name="color" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stock" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-6">
+        <createTable tableName="user_types">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-7">
+        <createTable tableName="users">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_address" type="VARCHAR(2147)"/>
+            <column name="type" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_number_type" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(2147)"/>
+            <column name="id_number" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-8">
+        <addPrimaryKey columnNames="id" constraintName="category_pk" tableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-9">
+        <addPrimaryKey columnNames="id" constraintName="details_pk" tableName="details"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-10">
+        <addPrimaryKey columnNames="id" constraintName="invoices_pk" tableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-11">
+        <addPrimaryKey columnNames="id" constraintName="payment_modes_pk" tableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-12">
+        <addPrimaryKey columnNames="id" constraintName="product_pk" tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-13">
+        <addPrimaryKey columnNames="id" constraintName="user_types_pk" tableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-14">
+        <addPrimaryKey columnNames="id" constraintName="users_pk" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-15">
+        <addForeignKeyConstraint baseColumnNames="product" baseTableName="details" constraintName="details_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-16">
+        <addForeignKeyConstraint baseColumnNames="invoice" baseTableName="details" constraintName="details_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-17">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="invoices" constraintName="invoices_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-18">
+        <addForeignKeyConstraint baseColumnNames="payment_mode" baseTableName="invoices" constraintName="invoices_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-19">
+        <addForeignKeyConstraint baseColumnNames="category" baseTableName="products" constraintName="products_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271205073-20">
+        <addForeignKeyConstraint baseColumnNames="type" baseTableName="users" constraintName="users_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-1">
+        <createTable tableName="categories">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-2">
+        <createTable tableName="details">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invoice" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-3">
+        <createTable tableName="invoices">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_mode" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taxes" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="numeric"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-4">
+        <createTable tableName="payment_modes">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)"/>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-5">
+        <createTable tableName="products">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+            <column name="color" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stock" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-6">
+        <createTable tableName="user_types">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-7">
+        <createTable tableName="users">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_address" type="VARCHAR(2147)"/>
+            <column name="type" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_number_type" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(2147)"/>
+            <column name="id_number" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fghhfd" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-8">
+        <addPrimaryKey columnNames="id" constraintName="category_pk" tableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-9">
+        <addPrimaryKey columnNames="id" constraintName="details_pk" tableName="details"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-10">
+        <addPrimaryKey columnNames="id" constraintName="invoices_pk" tableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-11">
+        <addPrimaryKey columnNames="id" constraintName="payment_modes_pk" tableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-12">
+        <addPrimaryKey columnNames="id" constraintName="product_pk" tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-13">
+        <addPrimaryKey columnNames="id" constraintName="user_types_pk" tableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-14">
+        <addPrimaryKey columnNames="id" constraintName="users_pk" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-15">
+        <addForeignKeyConstraint baseColumnNames="product" baseTableName="details" constraintName="details_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-16">
+        <addForeignKeyConstraint baseColumnNames="invoice" baseTableName="details" constraintName="details_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-17">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="invoices" constraintName="invoices_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-18">
+        <addForeignKeyConstraint baseColumnNames="payment_mode" baseTableName="invoices" constraintName="invoices_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-19">
+        <addForeignKeyConstraint baseColumnNames="category" baseTableName="products" constraintName="products_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271265808-20">
+        <addForeignKeyConstraint baseColumnNames="type" baseTableName="users" constraintName="users_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-1">
+        <createTable tableName="categories">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-2">
+        <createTable tableName="details">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invoice" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-3">
+        <createTable tableName="invoices">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_mode" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taxes" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="numeric"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-4">
+        <createTable tableName="payment_modes">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)"/>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-5">
+        <createTable tableName="products">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+            <column name="color" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stock" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-6">
+        <createTable tableName="user_types">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-7">
+        <createTable tableName="users">
+            <column defaultValueComputed="uuid_generate_v1()" name="id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_address" type="VARCHAR(2147)"/>
+            <column name="type" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_number_type" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(2147)"/>
+            <column name="id_number" type="VARCHAR(2147)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fghhfd" type="VARCHAR(2147)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-8">
+        <addPrimaryKey columnNames="id" constraintName="category_pk" tableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-9">
+        <addPrimaryKey columnNames="id" constraintName="details_pk" tableName="details"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-10">
+        <addPrimaryKey columnNames="id" constraintName="invoices_pk" tableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-11">
+        <addPrimaryKey columnNames="id" constraintName="payment_modes_pk" tableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-12">
+        <addPrimaryKey columnNames="id" constraintName="product_pk" tableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-13">
+        <addPrimaryKey columnNames="id" constraintName="user_types_pk" tableName="user_types"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-14">
+        <addPrimaryKey columnNames="id" constraintName="users_pk" tableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-15">
+        <addForeignKeyConstraint baseColumnNames="product" baseTableName="details" constraintName="details_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="products"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-16">
+        <addForeignKeyConstraint baseColumnNames="invoice" baseTableName="details" constraintName="details_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="invoices"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-17">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="invoices" constraintName="invoices_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-18">
+        <addForeignKeyConstraint baseColumnNames="payment_mode" baseTableName="invoices" constraintName="invoices_fk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="payment_modes"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-19">
+        <addForeignKeyConstraint baseColumnNames="category" baseTableName="products" constraintName="products_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="categories"/>
+    </changeSet>
+    <changeSet author="sviteri (generated)" id="1640271350557-20">
+        <addForeignKeyConstraint baseColumnNames="type" baseTableName="users" constraintName="users_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_types"/>
+    </changeSet>
+</databaseChangeLog>
