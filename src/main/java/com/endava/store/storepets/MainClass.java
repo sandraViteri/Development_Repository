@@ -28,5 +28,4 @@ public class MainClass {
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
-
 }
